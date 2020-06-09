@@ -1,0 +1,52 @@
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+main {
+    margin-top: 75px;
+}
+.headerEntry {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+}
+
+b {
+    color: red;
+}
+.center {
+    display: block;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.grid-container {
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.grid-container-2 {
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.grid-item {
+    text-align: center;
+}
