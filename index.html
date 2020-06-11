@@ -19,12 +19,12 @@
     <body>
         <header>
             <br>
-            <img class="center" src="images/mcds.png" alt="McDonalds" width="300px" margin-top="auto"> 
+            <img class="center" src="images/mcds.png" alt="McDonalds" width="300"> 
             <h1>Who's lovin' it?</h1>
             <br>
-            <h2>by<br>Eric Yu & Danny Luo</h2>
+            <h2>by<br>Eric Yu & Yuxi Luo</h2>
             <br>
-            <div class="grid-container" width="100%">
+            <div class="grid-container">
                 <div class="grid-item">
                     <p class="headerEntry"><b>65</b><br>Years</p>
                 </div>
@@ -35,22 +35,72 @@
                     <p class="headerEntry"><b>118</b><br>Countries</p>
                 </div>
                 <div class="grid-item">
-                    <p class="headerEntry"><b>145</b><br>Items</p>
+                    <p class="headerEntry"><b>150+</b><br>Items</p>
                 </div>
             </div>
         </header>
 
         <main>
             <br>
-            <section>
-                <div id="statesCounts" style="min-width: 310px; max-width: 750px; height: 500px; margin: 0 auto"></div> 
-            </section>
+            <div class="highmap">
+                <div id="statesCounts" style="min-width: 310px; max-width: 700px; height: 600px; margin: 0 auto"></div> 
+                <p class="mapdesc">California really is the Golden State, having the most McDonald's locations, followed by Texas and Florida.</p>
+            </div>
             <br>
-            <section id="lineChart">
-                <div class="grid-container-2" width="100%">
-            
+            <div class="line">
+                <div class="grid-item-2" id="lineChart"></div>
+            </div>
+            <br>
+            <div>
+                <h2>Need breakfast? Lunch? Or just a small beverage? McDonald's has it all.</h2>
+                <div class="bar" id="barChart"></div>
+            </div>
+            <br>
+            <h2 class="h2-custom">The McDonald's McPick</h2>
+            <p class="subtitle">The 5 most popular items on the menu.</p>
+            <p class="subtitle">Source: <a href="https://www.businessinsider.com/the-bestselling-mcdonalds-menu-items-of-all-time-2018-2">businessinsider.com</a></p>
+            <br>
+            <div class="grid-container-5">
+                <div>
+                    <input id="fries" type="image" class="btn" src="images/fries.png" alt="French fries" onclick="plotPieChart(this.id)">
+                    <br>
+                    <p class="subtitle">French Fries</p>
                 </div>
-            </section>
+
+                <div>
+                    <input id="bigmac" type="image" class="btn" src="images/bigmac.png" alt="Big Mac" onclick="plotPieChart(this.id)">
+                    <br>
+                    <p class="subtitle">Big Mac</p>
+                </div>
+
+                <div>
+                    <input id="snackwrap" type="image" class="btn" src="images/snackwrap.png" alt="Snack Wrap" onclick="plotPieChart(this.id)">
+                    <br>
+                    <p class="subtitle">Snack Wrap</p>
+                </div>
+
+                <div>
+                    <input id="happymeal" type="image" class="btn" src="images/happymeal.png" alt="Happy Meal" onclick="plotPieChart(this.id)">
+                    <br>
+                    <p class="subtitle">Happy Meal</p>
+                </div>
+
+                <div>
+                    <input id="egg" type="image" class="btn" src="images/eggmcmuffin.png" alt="Egg McMuffin" onclick="plotPieChart(this.id)">
+                    <br>
+                    <p class="subtitle">Egg McMuffin</p>
+                </div>
+            </div>
+            <p class="mapdesc">Click an item to see what you're putting into your body.</p>
+            <p class="desc">Nutrition values are based on a 2000 calorie diet.</p>
+            <p class="subtitle">Source: <a href="https://www.mcdonalds.com/us/en-us/about-our-food/nutrition-calculator.html">mcdonalds.com</a></p>
+            <br>
+            <div class="grid-container-3">
+                <div id="pieChart1"></div>
+                <div id="pieChart2"></div>
+                <div id="pieChart3"></div>
+            </div>
+            <br>
         </main>
         <script src="scripts/main.js"></script> 
     </body>

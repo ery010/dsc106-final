@@ -6,65 +6,71 @@ async function loadJSON(path) {
 
 function init() {
 	yearsPromise = loadJSON('./data/year_counts.json');
-
 	yearsPromise.then(function (year) {
 		plotYearSales(year);
 	});
+
+	nutrientPromise = loadJSON('./data/nutrition.json')
+	nutrientPromise.then(function (nutrient) {
+		nutritionData = nutrient;
+	});
+
+	plotBar()
 };
 
-// TODO: Re-scrape counts
+// TODO: Add Hawaii/fix Alaska
 let states = [
-				['us-ak', 17.0],
-				['us-al', 188.0],
-				['us-ar', 105.0],
-				['us-az', 259.0],
-				['us-ca', 1252.0],
-				['us-co', 181.0],
-				['us-ct', 140.0],
-				['us-dc', 27.0],
-				['us-de', 27.0],
-				['us-fl', 846.0],
-				['us-ga', 356.0],
-				['us-hi', 51.0],
-				['us-ia', 102.0],
-				['us-id', 49.0],
-				['us-il', 572.0],
-				['us-in', 293.0],
-				['us-ks', 115.0],
-				['us-ky', 150.0],
-				['us-la', 150.0],
-				['us-ma', 234.0],
-				['us-md', 255.0],
-				['us-me', 10.0],
-				['us-mi', 444.0],
-				['us-mn', 168.0],
-				['us-mo', 225.0],
-				['us-ms', 44.0],
-				['us-mt', 23.0],
-				['us-nc', 378.0],
-				['us-nd', 17.0],
-				['us-ne', 50.0],
-				['us-nh', 31.0],
-				['us-nj', 236.0],
-				['us-nm', 69.0],
-				['us-nv', 124.0],
-				['us-ny', 509.0],
-				['us-oh', 502.0],
-				['us-ok', 163.0],
-				['us-or', 129.0],
-				['us-pa', 428.0],
-				['us-ri', 31.0],
-				['us-sc', 169.0],
-				['us-sd', 15.0],
-				['us-tn', 242.0],
-				['us-tx', 1041.0],
-				['us-ut', 102.0],
-				['us-va', 324.0],
-				['us-vt', 1.0],
-				['us-wa', 232.0],
-				['us-wi', 248.0],
-				['us-wv', 9.0],
-				['us-wy', 9.0]
+				['us-ak', 18.0],
+				['us-al', 245.0],
+				['us-ar', 173.0],
+				['us-az', 289.0],
+				['us-ca', 1288.0],
+				['us-co', 211.0],
+				['us-ct', 147.0],
+				['us-dc', 28.0],
+				['us-de', 37.0],
+				['us-fl', 907.0],
+				['us-ga', 454.0],
+				['us-hi', 53.0],
+				['us-ia', 147.0],
+				['us-id', 62.0],
+				['us-il', 663.0],
+				['us-in', 349.0],
+				['us-ks', 148.0],
+				['us-ky', 251.0],
+				['us-la', 240.0],
+				['us-ma', 242.0],
+				['us-md', 288.0],
+				['us-me', 62.0],
+				['us-mi', 545.0],
+				['us-mn', 226.0],
+				['us-mo', 315.0],
+				['us-ms', 144.0],
+				['us-mt', 48.0],
+				['us-nc', 489.0],
+				['us-nd', 25.0],
+				['us-ne', 78.0],
+				['us-nh', 54.0],
+				['us-nj', 264.0],
+				['us-nm', 104.0],
+				['us-nv', 144.0],
+				['us-ny', 617.0],
+				['us-oh', 615.0],
+				['us-ok', 204.0],
+				['us-or', 164.0],
+				['us-pa', 494.0],
+				['us-ri', 32.0],
+				['us-sc', 230.0],
+				['us-sd', 30.0],
+				['us-tn', 331.0],
+				['us-tx', 1191.0],
+				['us-ut', 116.0],
+				['us-va', 401.0],
+				['us-vt', 26.0],
+				['us-wa', 263.0],
+				['us-wi', 299.0],
+				['us-wv', 104.0],
+				['us-wy', 29.0]
 			]
 
 function plotMap(states) {
@@ -75,29 +81,57 @@ function plotMap(states) {
 		title: {
 			text: "Number of U.S. McDonald's Locations by State",
 			style: {
-				fontFamily: "Montserrat', sans-serif",
+				fontFamily: "Montserrat",
 				fontWeight: "bolder",
 				color: "black"
 			}
 		},
+		subtitle: {
+			text: 'Source: <a href="https://www.kaggle.com/kerneler/starter-mcdonald-s-locations-2678722e-c">kaggle.com</a>'
+		},
+		colorAxis: {
+            min: 1,
+            type: 'linear',
+            minColor: '#ffcf40',
+            maxColor: '#a67c00',
+            stops: [
+                [0, '#ffcf40'],
+                [0.5, '#ffbf00'],
+				[0.75, '#bf9b30'],
+				[1, '#a67c00']
+            ]
+		},
+		
 		exporting: {
 			enabled: false
 		},
+
 		legend: {
-			enabled: false
+            layout: 'horizontal',
+            borderWidth: 0,
+            backgroundColor: 'rgba(255,255,255,0.85)',
+            floating: true,
+            verticalAlign: 'top',
+            y: 50
 		},
+		
 		credits: {
 			enabled: false
 		},
 		series: [{
 			data: states,
-			color: '#F2D78C',
+			color: '#fcc201',
 			name: 'Number of Locations',
 			states: {
                 hover: {
-                    color: '#FF4A4A'
+					color: '#ff0000',
+					
                 }
-            },
+			},
+			tooltip: {
+				pointFormat: '{point.value}'
+
+			},
 			dataLabels: {
                 enabled: true,
                 format: '{point.value}',
@@ -124,14 +158,13 @@ function plotYearSales(yearSales) {
         totals.push(Number(datum['Total'].toFixed(2)));
         totalByYear.push([datum['Year'], Number(datum['Total'].toFixed(2))])
     }
-    console.log(years)
-    console.log(totals)
-    
 
 	Highcharts.chart("lineChart", {
 		chart: {
 			type: "line",
 			style: {
+				fontFamily: "Montserrat",
+				fontWeight: "bolder",
 				color: "lightblue"
 			},
 			marginRight: 45,
@@ -139,14 +172,14 @@ function plotYearSales(yearSales) {
 			marginBottom: 75
 		},
 		title: {
-			text: 'Yearly Growth',
+			text: 'Yearly Growth from 1994-2018',
 			style: {
 				fontWeight: "bold",
 				fontSize: "21px"
 			}
 		},
 		subtitle: {
-			text: "Total Number of McDonald's Restaurants Worldwide 1994-2018",
+			text: 'Source: <a href="https://expandedramblings.com/index.php/mcdonalds-statistics/">expandedramblings.com</a>',
 			style: {
 				fontWeight: "bold"
 			}
@@ -154,12 +187,15 @@ function plotYearSales(yearSales) {
 		xAxis: {
 			labels: {
 				style: {
-					fontSize: "12px"
-				}
+					fontSize: "12px",
+					fontFamily: "Montserrat"
+				},
 			},
+			tickInterval: 1,
 			title: {
 				text: "Year",
 				style: {
+					fontFamily: "Montserrat",
 					fontWeight: "bold"
 				}
 			},
@@ -188,6 +224,7 @@ function plotYearSales(yearSales) {
 				text: 'Total Number of Locations',
 				align: 'middle',
 				style: {
+					fontFamily: "Montserrat",
 					fontWeight: "bold"
 				}
 			},
@@ -224,7 +261,7 @@ function plotYearSales(yearSales) {
 		},
 		series: [{
 			data: totalByYear,
-			name: "Total EV Sales by Year",
+			name: "Total Stores",
 			showInLegend: false,
 			tooltip: {
 				pointFormat: '{point.y}',
@@ -237,6 +274,264 @@ function plotYearSales(yearSales) {
 			}
 		}],
 	});
+}
+
+function plotPieChart(item) {
+
+	var currItem = nutritionData[item]
+	
+	Highcharts.chart("pieChart1", {
+		chart: {
+			type: "pie",
+			animation: false
+		},
+		title: {
+			text: "Calories",
+			style: {
+				fontFamily: "Montserrat",
+				fontWeight: "bolder"
+			}
+		},
+		exporting: {
+			enabled: false
+		},
+		legend: {
+			enabled: true,
+			layout: "vertical",
+			borderWidth: 1,
+			verticalAlign: "top",
+			symbolRadius: 0,
+			squareSymbol: true
+		},
+		credits: {
+			enabled: false
+		},
+		plotOptions: {
+			pie: {
+				startAngle: 0,
+				// allowPointSelect: true,
+				showInLegend: true,
+				size: "90%"
+			},
+		},
+		tooltip: {
+			enabled: false
+		},
+		series: [{
+			colorByPoint: true,
+			data: [{
+				// Calories: 2000 calories recommended
+				name: "Percent of alloted calories consumed",
+				y: (currItem[0]["Value"] / 2000)*100,
+				color: "#ff0000",
+				dataLabels: {
+					enabled: true,
+					distance: -50,
+					format: "{point.y:.1f} %",
+					style: {
+						textOutline: 0,
+						fontSize: "15px"
+					},
+				},
+			},
+			{
+				name: "Remainder of alloted calories",
+				y: 100 - ((currItem[0]["Value"] / 2000)*100),
+				color: "#fcc201",
+				dataLabels: {
+					enabled: false
+				},
+			}],
+			animation: false
+		}]
+	})
+
+	Highcharts.chart("pieChart2", {
+		chart: {
+			type: "pie",
+			animation: false
+		},
+		title: {
+			text: "Total Fat",
+			style: {
+				fontFamily: "Montserrat",
+				fontWeight: "bolder"
+			}
+		},
+		exporting: {
+			enabled: false
+		},
+		legend: {
+			enabled: true,
+			layout: "vertical",
+			borderWidth: 1,
+			verticalAlign: "top",
+			symbolRadius: 0,
+			squareSymbol: true
+		},
+		credits: {
+			enabled: false
+		},
+		plotOptions: {
+			pie: {
+				startAngle: 0,
+				// allowPointSelect: true,
+				showInLegend: true,
+				size: "90%"
+			},
+		},
+		tooltip: {
+			enabled: false
+		},
+		series: [{
+			colorByPoint: true,
+			data: [{
+				// Total Fat: Recommend 44 - 77g, average is about 60g
+				name: "Percent of alloted fat consumed",
+				y: (currItem[1]["Value"] / 60)*100,
+				color: "#ff0000",
+				dataLabels: {
+					enabled: true,
+					distance: -50,
+					format: "{point.y:.1f} %",
+					style: {
+						textOutline: 0,
+						fontSize: "15px"
+					},
+				},
+			},
+			{
+				name: "Remainder of alloted fat",
+				y: 100 - ((currItem[1]["Value"] / 60)*100),
+				color: "#fcc201",
+				dataLabels: {
+					enabled: false,
+				},
+			}],
+			animation: false
+		}]
+	})
+
+	Highcharts.chart("pieChart3", {
+		chart: {
+			type: "pie",
+			animation: false
+		},
+		title: {
+			text: "Sodium",
+			style: {
+				fontFamily: "Montserrat",
+				fontWeight: "bolder"
+			}
+		},
+		exporting: {
+			enabled: false
+		},
+		legend: {
+			enabled: true,
+			layout: "vertical",
+			borderWidth: 1,
+			verticalAlign: "top",
+			symbolRadius: 0,
+			squareSymbol: true
+		},
+		credits: {
+			enabled: false
+		},
+		plotOptions: {
+			pie: {
+				startAngle: 0,
+				// allowPointSelect: true,
+				showInLegend: true,
+				size: "90%"
+			},
+		},
+		tooltip: {
+			enabled: false
+		},
+		series: [{
+			colorByPoint: true,
+			data: [{
+				// Sodium: Daily recommend 2300 mg
+				name: "Percent of alloted sodium consumed",
+				y: (currItem[2]["Value"] / 2300)*100,
+				color: "#ff0000",
+				dataLabels: {
+					enabled: true,
+					distance: -50,
+					format: "{point.y:.1f} %",
+					style: {
+						textOutline: 0,
+						fontSize: "15px"
+					},
+				},
+			},
+			{
+				name: "Remainder of alloted sodium",
+				y: 100 - ((currItem[2]["Value"] / 2300)*100),
+				color: "#fcc201",
+				dataLabels: {
+					enabled: false,
+				},
+			}],
+			animation: false
+		}]
+	})
+}
+
+function plotBar() {
+
+	Highcharts.chart("barChart", {
+		chart: {
+			type: "column",
+			animation: false
+		},
+		title: {
+			text: "McDonald's Menu Categories",
+			style: {
+				fontFamily: "Montserrat",
+				fontWeight: "bolder"
+			}
+		},
+		xAxis: {
+			categories: [
+				'Salads', 
+				'Desserts', 
+				'Snacks & Sides', 
+				'Beef & Pork', 
+				'Beverages',
+				'Chicken & Fish', 
+				'Smoothies & Shakes', 
+				'Breakfast', 
+				'Coffee & Tea'
+			],
+			crosshair: true
+		},
+		yAxis: {
+			min: 0,
+			title: {
+				text: 'Number of Items'
+			}
+		},
+		credits: {
+			enabled: false
+		},
+		exporting: {
+			enabled: false
+		},
+		legend: {
+			enabled: true,
+			align: "center",
+			borderWidth: 0,
+			verticalAlign: "top",
+			symbolRadius: 0,
+			squareSymbol: true
+		},
+		series: [{
+			name: 'Number of items in category',
+			data: [6, 7, 13, 15, 27, 27, 28, 42, 95],
+		}]
+	})
 }
 
 
