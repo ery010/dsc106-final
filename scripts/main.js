@@ -493,7 +493,17 @@ function plotBar() {
 				fontWeight: "bolder"
 			}
 		},
+		subtitle: {
+			text: 'Source: <a href="https://www.kaggle.com/mcdonalds/nutrition-facts">kaggle.com</a>'
+		},
 		xAxis: {
+			title: {
+				text: "McDonald's Item Categories",
+				style: {
+					fontFamily: "Montserrat",
+					fontWeight: "bolder"
+				}
+			},
 			categories: [
 				'Salads', 
 				'Desserts', 
@@ -510,7 +520,11 @@ function plotBar() {
 		yAxis: {
 			min: 0,
 			title: {
-				text: 'Number of Items'
+				text: 'Number of Items',
+				style: {
+					fontFamily: "Montserrat",
+					fontWeight: "bolder"
+				}
 			}
 		},
 		credits: {
@@ -530,6 +544,7 @@ function plotBar() {
 		series: [{
 			name: 'Number of items in category',
 			data: [6, 7, 13, 15, 27, 27, 28, 42, 95],
+			color:  "#fcc201"
 		}]
 	})
 }
