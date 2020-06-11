@@ -18,7 +18,6 @@ function init() {
 	plotBar()
 };
 
-// TODO: Add Hawaii/fix Alaska
 let states = [
 				['us-ak', 18.0],
 				['us-al', 245.0],
@@ -74,6 +73,7 @@ let states = [
 			]
 
 function plotMap(states) {
+	
 	Highcharts.mapChart("statesCounts", {
 		chart: {
 			map: 'countries/us/us-all',
@@ -309,7 +309,6 @@ function plotPieChart(item) {
 		plotOptions: {
 			pie: {
 				startAngle: 0,
-				// allowPointSelect: true,
 				showInLegend: true,
 				size: "90%"
 			},
@@ -375,7 +374,6 @@ function plotPieChart(item) {
 		plotOptions: {
 			pie: {
 				startAngle: 0,
-				// allowPointSelect: true,
 				showInLegend: true,
 				size: "90%"
 			},
@@ -441,7 +439,6 @@ function plotPieChart(item) {
 		plotOptions: {
 			pie: {
 				startAngle: 0,
-				// allowPointSelect: true,
 				showInLegend: true,
 				size: "90%"
 			},
