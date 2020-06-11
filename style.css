@@ -16,6 +16,10 @@ h2 {
     margin-bottom: 150px;
 }
 
+a {
+    text-decoration: none;
+}
+
 .bar {
     margin-bottom: 150px;
     overflow: auto;
@@ -115,11 +119,19 @@ b {
     text-align: center;
     font-weight: bold;
     font-size: 1.5em;
-    margin-bottom: 75px;
+    margin-bottom: 150px;
 }
 
 .desc {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
     font-size: 15px;
+}
+
+.clickdesc {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+
 }

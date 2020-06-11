@@ -87,7 +87,11 @@ function plotMap(states) {
 			}
 		},
 		subtitle: {
-			text: 'Source: <a href="https://www.kaggle.com/kerneler/starter-mcdonald-s-locations-2678722e-c">kaggle.com</a>'
+			text: 'Source: <a href="https://www.kaggle.com/kerneler/starter-mcdonald-s-locations-2678722e-c">kaggle.com</a>',
+			style: {
+				fontFamily: "Montserrat",
+				fontSize: "15px"
+			}
 		},
 		colorAxis: {
             min: 1,
@@ -164,8 +168,7 @@ function plotYearSales(yearSales) {
 			type: "line",
 			style: {
 				fontFamily: "Montserrat",
-				fontWeight: "bolder",
-				color: "lightblue"
+				fontWeight: "bolder"
 			},
 			marginRight: 45,
 			marginLeft: 65,
@@ -181,7 +184,8 @@ function plotYearSales(yearSales) {
 		subtitle: {
 			text: 'Source: <a href="https://expandedramblings.com/index.php/mcdonalds-statistics/">expandedramblings.com</a>',
 			style: {
-				fontWeight: "bold"
+				fontFamily: "Montserrat",
+				fontSize: "15px"
 			}
 		},
 		xAxis: {
@@ -262,6 +266,7 @@ function plotYearSales(yearSales) {
 		series: [{
 			data: totalByYear,
 			name: "Total Stores",
+			color: "#a67c00",
 			showInLegend: false,
 			tooltip: {
 				pointFormat: '{point.y}',
@@ -320,7 +325,7 @@ function plotPieChart(item) {
 			colorByPoint: true,
 			data: [{
 				// Calories: 2000 calories recommended
-				name: "Percent of alloted calories consumed",
+				name: "Percent of alloted calories per serving",
 				y: (currItem[0]["Value"] / 2000)*100,
 				color: "#ff0000",
 				dataLabels: {
@@ -385,7 +390,7 @@ function plotPieChart(item) {
 			colorByPoint: true,
 			data: [{
 				// Total Fat: Recommend 44 - 77g, average is about 60g
-				name: "Percent of alloted fat consumed",
+				name: "Percent of alloted fat per serving",
 				y: (currItem[1]["Value"] / 60)*100,
 				color: "#ff0000",
 				dataLabels: {
@@ -450,7 +455,7 @@ function plotPieChart(item) {
 			colorByPoint: true,
 			data: [{
 				// Sodium: Daily recommend 2300 mg
-				name: "Percent of alloted sodium consumed",
+				name: "Percent of alloted sodium per serving",
 				y: (currItem[2]["Value"] / 2300)*100,
 				color: "#ff0000",
 				dataLabels: {
@@ -491,7 +496,11 @@ function plotBar() {
 			}
 		},
 		subtitle: {
-			text: 'Source: <a href="https://www.kaggle.com/mcdonalds/nutrition-facts">kaggle.com</a>'
+			text: 'Source: <a href="https://www.kaggle.com/mcdonalds/nutrition-facts">kaggle.com</a>',
+			style: {
+				fontFamily: "Montserrat",
+				fontSize: "15px"
+			}
 		},
 		xAxis: {
 			title: {
