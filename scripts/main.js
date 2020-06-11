@@ -563,5 +563,4 @@ function plotBar() {
 	})
 }
 
-
 document.addEventListener('DOMContentLoaded', init, false);
